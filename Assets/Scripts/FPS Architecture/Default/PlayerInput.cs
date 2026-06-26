@@ -9,6 +9,10 @@ public class PlayerInput : MonoBehaviour
 
     public bool JumpPressed => inputActions.Player.Jump.WasPressedThisFrame();
 
+    public bool CrouchHeld => inputActions.Player.Crouch.IsPressed();
+
+    public bool FirePressed => inputActions.Player.Fire.WasPressedThisFrame();
+
     private PlayerInputActions inputActions;
 
     private void Awake()

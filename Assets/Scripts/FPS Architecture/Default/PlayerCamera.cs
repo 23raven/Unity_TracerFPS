@@ -9,9 +9,9 @@ public class PlayerCamera : MonoBehaviour
 
     private float xRotation;
 
-    private void Awake()
+    public void Initialize(PlayerManager manager)
     {
-        playerManager = GetComponent<PlayerManager>();
+        playerManager = manager;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

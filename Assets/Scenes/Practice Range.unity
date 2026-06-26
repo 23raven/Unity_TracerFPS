@@ -4210,7 +4210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   cameraHandle: {fileID: 2047002368}
-  sensitivity: 30
+  sensitivity: 10
 --- !u!114 &1158085383
 MonoBehaviour:
   m_ObjectHideFlags: 0
