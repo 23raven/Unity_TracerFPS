@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
 
     private PlayerInputActions inputActions;
 
+    public bool FireHeld => inputActions.Player.Fire.IsPressed();
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -36,4 +38,5 @@ public class PlayerInput : MonoBehaviour
         Move = inputActions.Player.Move.ReadValue<Vector2>();
         Look = inputActions.Player.Look.ReadValue<Vector2>();
     }
+
 }

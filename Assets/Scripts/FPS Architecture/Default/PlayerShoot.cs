@@ -19,7 +19,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void HandleShoot()
     {
-        if (!playerManager.Input.FirePressed)
+        if (!weaponHolder.CurrentWeapon.WantsToShoot(playerManager.Input))
             return;
 
         weaponHolder.CurrentWeapon.Shoot();

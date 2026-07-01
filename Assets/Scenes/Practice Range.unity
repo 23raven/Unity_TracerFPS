@@ -429,7 +429,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &69161416
 MonoBehaviour:
@@ -10212,7 +10212,7 @@ Transform:
   m_GameObject: {fileID: 1456925983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.279, z: 0}
+  m_LocalPosition: {x: 0, y: -1.058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10274,7 +10274,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.88e-43, y: NaN, z: 7.88e-43, w: 3e-45}
+  m_BoundingSphereOverride: {x: 8.305307e-19, y: 0.00017281328, z: 0.000042961186, w: 0.0000000024174494}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -11657,7 +11657,7 @@ SceneRoots:
   - {fileID: 2052888264}
   - {fileID: 837961417}
   - {fileID: 1927133729}
-  - {fileID: 422312026}
   - {fileID: 440527908}
   - {fileID: 1158085378}
   - {fileID: 323602059}
+  - {fileID: 422312026}

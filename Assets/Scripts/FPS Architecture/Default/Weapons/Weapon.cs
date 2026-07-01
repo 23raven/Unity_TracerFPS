@@ -4,6 +4,7 @@ public abstract class Weapon : MonoBehaviour
 {
     protected PlayerManager playerManager;
     [SerializeField] protected float fireRate = 10f;
+    [SerializeField] protected FireMode fireMode;
 
     private float nextFireTime;
 
@@ -22,4 +23,15 @@ public abstract class Weapon : MonoBehaviour
         nextFireTime = Time.time + 1f / fireRate;
         return true;
     }
+
+    public bool WantsToShoot(PlayerInput input)
+    {
+        return fireMode switch
+        {
+            FireMode.SemiAuto => input.FirePressed,
+            FireMode.FullAuto => input.FireHeld,
+            _ => false
+        };
+    }
+
 }
