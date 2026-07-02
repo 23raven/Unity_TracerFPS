@@ -4,10 +4,7 @@ using System.Collections;
 public abstract class Weapon : MonoBehaviour
 {
     protected PlayerManager playerManager;
-    [SerializeField] protected float fireRate = 10f;
-    [SerializeField] protected FireMode fireMode;
-    [SerializeField] protected int magazineSize = 30;
-    [SerializeField] protected float reloadTime = 1.5f;
+    [SerializeField] protected WeaponData data;
 
     protected int currentAmmo;
     protected bool isReloading;
@@ -15,12 +12,12 @@ public abstract class Weapon : MonoBehaviour
     private float nextFireTime;
 
     public int CurrentAmmo => currentAmmo;
-    public int MagazineSize => magazineSize;
+    public int MagazineSize => data.magazineSize;
 
     public virtual void Initialize(PlayerManager manager)
     {
         playerManager = manager;
-        currentAmmo = magazineSize;
+        currentAmmo = data.magazineSize;
     }
 
     public abstract void Shoot();
@@ -33,13 +30,13 @@ public abstract class Weapon : MonoBehaviour
         if (Time.time < nextFireTime)
             return false;
 
-        nextFireTime = Time.time + 1f / fireRate;
+        nextFireTime = Time.time + 1f / data.fireRate;
         return true;
     }
 
     public bool WantsToShoot(PlayerInput input)
     {
-        return fireMode switch
+        return data.fireMode switch
         {
             FireMode.SemiAuto => input.FirePressed,
             FireMode.FullAuto => input.FireHeld,
@@ -63,7 +60,7 @@ public abstract class Weapon : MonoBehaviour
         if (isReloading)
             return;
 
-        if (currentAmmo == magazineSize)
+        if (currentAmmo == data.magazineSize)
             return;
 
         StartCoroutine(ReloadRoutine());
@@ -75,9 +72,9 @@ public abstract class Weapon : MonoBehaviour
 
         Debug.Log("Reloading...");
 
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(data.reloadTime);
 
-        currentAmmo = magazineSize;
+        currentAmmo = data.magazineSize;
         isReloading = false;
 
         Debug.Log($"Reload complete: {CurrentAmmo}/{MagazineSize}");

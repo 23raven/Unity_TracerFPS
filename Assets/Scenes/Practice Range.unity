@@ -10274,7 +10274,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.305307e-19, y: 0.00017281328, z: 0.000042961186, w: 0.0000000024174494}
+  m_BoundingSphereOverride: {x: 0, y: NaN, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -10863,16 +10863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6546524fae282249b048791e12bf4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitscanWeapon
-  fireRate: 10
-  fireMode: 1
-  magazineSize: 30
-  reloadTime: 1.5
+  data: {fileID: 11400000, guid: 99270e018f6d40f4d9d3b3fe4dfc306b, type: 2}
   playerCamera: {fileID: 1135954373}
-  range: 100
-  damage: 20
   muzzleFlash: {fileID: 356412880}
   impactEffect: {fileID: 4739264407584629229, guid: 841004c4c6a39e244abe2257394de913, type: 3}
-  spread: 0.2
 --- !u!1 &1927133728
 GameObject:
   m_ObjectHideFlags: 0
