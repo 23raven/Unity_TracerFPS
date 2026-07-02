@@ -7,6 +7,7 @@ public class HitscanWeapon : Weapon
     [SerializeField] private float damage = 20f;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem impactEffect;
+    [SerializeField] private float spread = 0.5f;
 
     public override void Shoot()
     {
@@ -17,8 +18,8 @@ public class HitscanWeapon : Weapon
             return;
 
         Ray ray = new Ray(
-            playerCamera.transform.position,
-            playerCamera.transform.forward);
+        playerCamera.transform.position,
+        GetShootDirection());
 
         if (!Physics.Raycast(ray, out RaycastHit hit, range))
             return;
@@ -62,5 +63,15 @@ public class HitscanWeapon : Weapon
             impactEffect,
             hit.point,
             Quaternion.LookRotation(hit.normal));
+    }
+
+    private Vector3 GetShootDirection()
+    {
+        Vector3 direction = playerCamera.transform.forward;
+
+        direction += playerCamera.transform.right * Random.Range(-spread, spread);
+        direction += playerCamera.transform.up * Random.Range(-spread, spread);
+
+        return direction.normalized;
     }
 }

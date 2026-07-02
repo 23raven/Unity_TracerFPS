@@ -10864,11 +10864,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitscanWeapon
   fireRate: 10
+  fireMode: 1
+  magazineSize: 30
+  reloadTime: 1.5
   playerCamera: {fileID: 1135954373}
   range: 100
   damage: 20
   muzzleFlash: {fileID: 356412880}
   impactEffect: {fileID: 4739264407584629229, guid: 841004c4c6a39e244abe2257394de913, type: 3}
+  spread: 0.2
 --- !u!1 &1927133728
 GameObject:
   m_ObjectHideFlags: 0
