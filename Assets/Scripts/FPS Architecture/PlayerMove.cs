@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     private float verticalVelocity;
     private bool isCrouching;
 
+
   
 
     private void Update()
@@ -86,7 +87,7 @@ public class PlayerMove : MonoBehaviour
     public void Initialize(PlayerManager manager)
     {
         playerManager = manager;
-
+        settings = manager.Hero.CurrentHero.Movement;
         input = manager.Input;
         controller = manager.Controller;
         targetHeight = settings.StandingHeight;

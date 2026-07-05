@@ -8,4 +8,10 @@ public class HeroDefinition : ScriptableObject
 
     [Header("Weapon")]
     public WeaponData Weapon;
+
+    [Header("Abilities")]
+    public HeroAbility PassiveAbility;
+    public HeroAbility ShiftAbility;
+    public HeroAbility EAbility;
+    public HeroAbility UltimateAbility;
 }

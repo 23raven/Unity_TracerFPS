@@ -2,25 +2,7 @@ using UnityEngine;
 
 public class HeroManager : MonoBehaviour
 {
-    [SerializeField] private HeroDefinition hero;
+    [SerializeField] private HeroDefinition currentHero;
 
-    public HeroDefinition Hero => hero;
-
-    private PlayerManager playerManager;
-
-    private void Awake()
-    {
-        playerManager = GetComponent<PlayerManager>();
-    }
-
-    private void Start()
-    {
-        ApplyHero();
-    }
-
-    private void ApplyHero()
-    {
-        playerManager.Move.SetMovementSettings(hero.Movement);
-        playerManager.WeaponHolder.CurrentWeapon.SetWeaponData(hero.Weapon);
-    }
+    public HeroDefinition CurrentHero => currentHero;
 }

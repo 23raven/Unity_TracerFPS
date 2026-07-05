@@ -18,6 +18,7 @@ public abstract class Weapon : MonoBehaviour
     {
         playerManager = manager;
         currentAmmo = data.magazineSize;
+        data = manager.Hero.CurrentHero.Weapon;
     }
 
     public abstract void Shoot();

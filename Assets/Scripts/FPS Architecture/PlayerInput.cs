@@ -19,6 +19,12 @@ public class PlayerInput : MonoBehaviour
 
     public bool ReloadPressed => inputActions.Player.Reload.WasPressedThisFrame();
 
+    public bool ShiftPressed => inputActions.Player.Shift.WasPressedThisFrame();
+
+    public bool EPressed => inputActions.Player.Ability.WasPressedThisFrame();
+
+    public bool UltimatePressed => inputActions.Player.Ultimate.WasPressedThisFrame();
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
