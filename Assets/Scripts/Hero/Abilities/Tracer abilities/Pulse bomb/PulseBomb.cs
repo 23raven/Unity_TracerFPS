@@ -7,18 +7,19 @@ public class PulseBomb : HeroAbility
 
     public override void Activate(PlayerManager player)
     {
+        Transform camera = player.Camera.CameraHandle;
+
         Vector3 spawnPosition =
-         player.Camera.transform.position +
-         player.Camera.transform.forward * 10f;
+            camera.position +
+            camera.forward * 0.5f;
 
         PulseBombProjectile projectile = Instantiate(
             data.ProjectilePrefab,
             spawnPosition,
-            player.Camera.transform.rotation);
+            camera.rotation);
 
         projectile.Initialize(player, data);
-
-        projectile.Launch(player.Camera.transform.forward);
+        projectile.Launch(camera.forward);
     }
 
     public override AbilityData GetData()

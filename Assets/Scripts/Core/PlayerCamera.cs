@@ -7,6 +7,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float standingCameraHeight = 2.0f;
     [SerializeField] private float crouchingCameraHeight = 0.3f;
     [SerializeField] private float cameraLerpSpeed = 12f;
+    public Transform CameraHandle => cameraHandle;
 
     private float targetCameraHeight;
 
