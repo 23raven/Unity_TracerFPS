@@ -60,9 +60,9 @@ public class AbilitySystem : MonoBehaviour
         if (!playerManager.Input.UltimatePressed)
             return;
 
-        if (!playerManager.UltimateCharge.TryConsume())
-            return;
+        
 
         ultimateSlot.Activate(playerManager);
     }
+
 }

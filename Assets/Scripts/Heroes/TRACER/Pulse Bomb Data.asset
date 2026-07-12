@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31272e8a083f0c64ca351735bdfa8c88, type: 3}
+  m_Name: Pulse Bomb Data
+  m_EditorClassIdentifier: Assembly-CSharp::PulseBombData
+  Cooldown: 5
+  MaxCharges: 1
+  projectilePrefab: {fileID: 7062500413538525435, guid: 13bf58042c40dff40833bc7bf6a140c3, type: 3}
+  speed: 25
+  lifetime: 5
+  damage: 350
+  radius: 50
+  fuseTime: 10
