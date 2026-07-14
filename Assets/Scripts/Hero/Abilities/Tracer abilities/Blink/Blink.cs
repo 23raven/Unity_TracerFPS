@@ -9,13 +9,29 @@ public class Blink : HeroAbility
     {
         CharacterController controller = player.Controller;
 
+        Vector2 moveInput = player.Input.Move;
+
+        Vector3 direction =
+            player.transform.forward * moveInput.y +
+            player.transform.right * moveInput.x;
+
+        // Если игрок стоит на месте — Blink вперед
+        if (direction.sqrMagnitude < 0.01f)
+        {
+            direction = player.transform.forward;
+        }
+
+        direction.Normalize();
+
+        // Временно отключаем CharacterController,
+        // чтобы избежать конфликтов при телепортации
         controller.enabled = false;
 
-        player.transform.position +=
-            player.transform.forward * data.Distance;
+        player.transform.position += direction * data.Distance;
 
         controller.enabled = true;
     }
+
     public override AbilityData GetData()
     {
         return data;

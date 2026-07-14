@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PlayerInput : MonoBehaviour
     public bool EPressed => inputActions.Player.Ability.WasPressedThisFrame();
 
     public bool UltimatePressed => inputActions.Player.Ultimate.WasPressedThisFrame();
+    public bool RightClickPressed => inputActions.Player.SecondaryAbility.WasPressedThisFrame();
 
     private void Awake()
     {

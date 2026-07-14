@@ -60,7 +60,12 @@ public class AbilitySystem : MonoBehaviour
         if (!playerManager.Input.UltimatePressed)
             return;
 
-        
+         ultimateSlot.Activate(playerManager);
+    }
+
+    private void HandleSecondary() {
+        if (!playerManager.Input.UltimatePressed)
+            return;
 
         ultimateSlot.Activate(playerManager);
     }

@@ -4,6 +4,7 @@ public class HitscanWeapon : Weapon
 {
     [SerializeField] private Camera playerCamera;
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private ParticleSystem muzzleFlashTwo;
     [SerializeField] private ParticleSystem impactEffect;
 
     public override void Shoot()
@@ -51,8 +52,16 @@ public class HitscanWeapon : Weapon
             return;
         }
 
+        if (muzzleFlashTwo == null)
+        {
+            Debug.LogError("MuzzleFlashTwo is NULL");
+            return;
+        }
+
         muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         muzzleFlash.Play();
+        muzzleFlashTwo.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        muzzleFlashTwo.Play();
     }
 
     private void PlayImpactEffect(RaycastHit hit)

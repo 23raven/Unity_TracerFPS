@@ -4,6 +4,7 @@ using System;
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
+    public bool IsDead => CurrentHealth <= 0f;
 
     public float CurrentHealth { get; private set; }
     public event Action OnDeath;
@@ -45,5 +46,11 @@ public class Health : MonoBehaviour, IDamageable
             Die();
         }
     }
+
+    public void ResetHealth()
+    {
+        CurrentHealth = maxHealth;
+    }
+
 
 }

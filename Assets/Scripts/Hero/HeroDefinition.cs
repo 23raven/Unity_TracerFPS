@@ -14,4 +14,5 @@ public class HeroDefinition : ScriptableObject
     public HeroAbility ShiftAbility;
     public HeroAbility EAbility;
     public HeroAbility UltimateAbility;
+    public HeroAbility SecondaryAbility;
 }
