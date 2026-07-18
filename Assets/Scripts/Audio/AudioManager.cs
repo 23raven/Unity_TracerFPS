@@ -104,4 +104,9 @@ public class AudioManager : MonoBehaviour
         footstep.volume = 1f;
         footstepFadeCoroutine = null;
     }
+
+    public void PlayHit()
+    {
+        hit.Play();
+    }
 }

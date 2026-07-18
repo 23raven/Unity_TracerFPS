@@ -42,6 +42,8 @@ public class HitscanWeapon : Weapon
     playerManager);
 
         damageable.TakeDamage(damageInfo);
+
+        playerManager.AudioManager.PlayHit();
     }
 
     private void PlayMuzzleFlash()
