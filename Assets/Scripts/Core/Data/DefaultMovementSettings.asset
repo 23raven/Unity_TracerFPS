@@ -18,7 +18,7 @@ MonoBehaviour:
   CrouchSpeed: 2.5
   StandingHeight: 2
   CrouchingHeight: 1
-  CeilingCheckRadius: 0.3
+  HeightLerpSpeed: 12
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
