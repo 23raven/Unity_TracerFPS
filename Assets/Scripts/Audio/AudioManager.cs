@@ -62,4 +62,46 @@ public class AudioManager : MonoBehaviour
         shoot.volume = 0.2f;
         shootFadeCoroutine = null;
     }
+
+    private Coroutine footstepFadeCoroutine;
+
+    public void PlayFootstep()
+    {
+        if (footstepFadeCoroutine != null)
+        {
+            StopCoroutine(footstepFadeCoroutine);
+            footstepFadeCoroutine = null;
+        }
+
+        footstep.volume = 1f;
+
+        if (!footstep.isPlaying)
+            footstep.Play();
+    }
+
+    public void StopFootstep()
+    {
+        if (!footstep.isPlaying || footstepFadeCoroutine != null)
+            return;
+
+        footstepFadeCoroutine = StartCoroutine(FadeOutFootstep());
+    }
+
+    private IEnumerator FadeOutFootstep()
+    {
+        float duration = 0.05f;
+        float startVolume = footstep.volume;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            footstep.volume = Mathf.Lerp(startVolume, 0f, elapsed / duration);
+            yield return null;
+        }
+
+        footstep.Stop();
+        footstep.volume = 1f;
+        footstepFadeCoroutine = null;
+    }
 }

@@ -22,11 +22,14 @@ public class PlayerMove : MonoBehaviour
         HandleGravity();
         HandleJump();
         HandleMovement();
+        HandleFootstep();
         UpdateControllerHeight();
+
     }
 
     private void HandleMovement()
     {
+
         Vector2 moveInput = input.Move;
 
         Vector3 moveDirection =
@@ -125,6 +128,18 @@ public class PlayerMove : MonoBehaviour
     public void SetMovementSettings(MovementSettings settings)
     {
         this.settings = settings;
+    }
+
+    private void HandleFootstep()
+    {
+        bool isWalking =
+            controller.isGrounded &&
+            input.Move.sqrMagnitude > 0.01f;
+
+        if (isWalking)
+            playerManager.AudioManager.PlayFootstep();
+        else
+            playerManager.AudioManager.StopFootstep();
     }
 
 }
