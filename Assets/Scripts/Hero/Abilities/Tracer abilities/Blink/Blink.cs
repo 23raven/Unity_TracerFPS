@@ -7,6 +7,8 @@ public class Blink : HeroAbility
 
     public override void Activate(PlayerManager player)
     {
+        player.AudioManager.PlayBlink();
+
         CharacterController controller = player.Controller;
 
         Vector2 moveInput = player.Input.Move;
