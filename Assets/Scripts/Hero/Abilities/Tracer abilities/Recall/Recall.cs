@@ -7,6 +7,7 @@ public class Recall : HeroAbility
 
     public override void Activate(PlayerManager player)
     {
+        player.AudioManager.PlayRecall();
         HistorySystem history =
             player.GetComponent<HistorySystem>();
 

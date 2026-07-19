@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -17,7 +18,6 @@ public class AudioManager : MonoBehaviour
 
     public void StopBlink() => blink.Stop();
 
-    public void PlayRecall() => recall.Play();
 
     public void StopRecall() => recall.Stop();
 
@@ -27,6 +27,11 @@ public class AudioManager : MonoBehaviour
     public void PlayReload()
     {
         reload.PlayOneShot(reload.clip);
+    }
+
+    public void PlayRecall()
+    {
+        recall.PlayOneShot(recall.clip);
     }
 
     public void PlayShoot()
