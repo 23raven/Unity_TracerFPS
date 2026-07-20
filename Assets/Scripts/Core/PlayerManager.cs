@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     public MovementSettings Movement => Hero.Movement;
     public WeaponData Weapon => Hero.Weapon;
 
+    [SerializeField] private BlinkUI blinkUI;
 
     private void Awake()
     {
@@ -46,5 +47,6 @@ public class PlayerManager : MonoBehaviour
         WeaponHolder.Initialize(this);
         Shoot.Initialize(this);
         AbilitySystem.Initialize(this);
+        blinkUI.Initialize(AbilitySystem.ShiftSlot);
     }
 }

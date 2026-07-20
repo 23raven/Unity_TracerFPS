@@ -12,6 +12,25 @@ public class BlinkUI : MonoBehaviour
 
     [SerializeField] private ChargeUI[] charges;
 
+    private AbilitySlot slot;
+
+    public void Initialize(AbilitySlot abilitySlot)
+    {
+        slot = abilitySlot;
+
+        slot.OnStateChanged += Refresh;
+
+        Refresh();
+    }
+
+    private void Refresh()
+    {
+        UpdateCharges(
+            slot.CurrentCharges,
+            slot.RechargeProgress);
+    }
+
+
     /// <summary>
     /// availableCharges = сколько зарядов сейчас доступно.
     /// rechargeProgress = прогресс восстановления следующего заряда (0-1).

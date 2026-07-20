@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AbilitySlot
 {
+    public System.Action OnStateChanged;
     public HeroAbility Ability { get; private set; }
     public int CurrentCharges => currentCharges;
     public int MaxCharges => Data == null ? 0 : Data.MaxCharges;
@@ -78,6 +79,8 @@ public class AbilitySlot
     {
         currentCharges--;
 
+        NotifyStateChanged();
+
         Debug.Log($"{Ability.name}: {currentCharges}/{MaxCharges}");
     }
 
@@ -94,6 +97,8 @@ public class AbilitySlot
 
         rechargeTimer += Time.deltaTime;
 
+        NotifyStateChanged();
+
         if (rechargeTimer < Data.Cooldown)
             return;
 
@@ -101,11 +106,18 @@ public class AbilitySlot
 
         rechargeTimer = 0f;
 
+        NotifyStateChanged();
+
         Debug.Log($"{Ability.name}: {currentCharges}/{MaxCharges}");
     }
 
     public void Deactivate(PlayerManager player)
     {
         Ability?.Deactivate(player);
+    }
+
+    private void NotifyStateChanged()
+    {
+        OnStateChanged?.Invoke();
     }
 }
