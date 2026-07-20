@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6d08285b52a1c4497258fe1a99291d, type: 3}
   m_Name: BlinkData
   m_EditorClassIdentifier: Assembly-CSharp::BlinkData
-  Cooldown: 3
+  Cooldown: 5
   MaxCharges: 3
   Distance: 6

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4a4ae4a07dadc44b35103e65ce4726, type: 3}
   m_Name: Recall Data
   m_EditorClassIdentifier: Assembly-CSharp::RecallData
-  Cooldown: 2
+  Cooldown: 7
   MaxCharges: 1
-  RecallDuration: 1.25
+  RecallDuration: 1.2
   RestoreHealth: 1
