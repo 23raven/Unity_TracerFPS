@@ -140,6 +140,11 @@ public class PlayerMove : MonoBehaviour
         bool isWalking =
             controller.isGrounded &&
             currentVelocity.sqrMagnitude > 0.05f;
+        if (isCrouching)
+        {
+            playerManager.AudioManager.StopFootstep();
+            return;
+        }
 
         if (isWalking)
             playerManager.AudioManager.PlayFootstep();

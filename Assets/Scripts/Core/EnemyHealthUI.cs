@@ -23,14 +23,7 @@ public class EnemyHealthUI : MonoBehaviour
     private void Start()
     {
         Camera[] cameras = FindObjectsByType<Camera>(FindObjectsSortMode.None);
-
-        Debug.Log($"Camera count: {cameras.Length}");
-
-        foreach (var cam in cameras)
-        {
-            Debug.Log($"{cam.name} | tag = {cam.tag}");
-        }
-
+               
         cameraTransform = Camera.main?.transform;
     }
 
@@ -48,7 +41,6 @@ public class EnemyHealthUI : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(
             transform.position - cameraTransform.position);
 
-        Debug.Log(transform.rotation.eulerAngles);
     }
 
     private void UpdateHealth(float current, float max)
