@@ -10,9 +10,18 @@ public class UltimateCharge : MonoBehaviour
 
     public bool IsReady => CurrentCharge >= maxCharge;
 
+    private void Awake()
+    {
+        CurrentCharge = MaxCharge;
+    }
+
     public void Add(float amount)
     {
+        Debug.Log($"Add called with: {amount}");
+
         CurrentCharge = Mathf.Clamp(CurrentCharge + amount, 0f, maxCharge);
+
+        Debug.Log($"CurrentCharge = {CurrentCharge}");
     }
 
     public bool TryConsume()

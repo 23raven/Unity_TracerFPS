@@ -19,4 +19,4 @@ MonoBehaviour:
   lifetime: 5
   damage: 350
   radius: 50
-  fuseTime: 10
+  fuseTime: 3

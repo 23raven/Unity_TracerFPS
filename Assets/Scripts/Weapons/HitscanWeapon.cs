@@ -38,8 +38,8 @@ public class HitscanWeapon : Weapon
             return;
 
         DamageInfo damageInfo = new DamageInfo(
-    data.damage,
-    playerManager);
+            data.damage,
+            playerManager);
 
         damageable.TakeDamage(damageInfo);
 

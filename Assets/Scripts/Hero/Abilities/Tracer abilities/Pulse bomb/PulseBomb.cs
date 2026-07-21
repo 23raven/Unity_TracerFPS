@@ -7,6 +7,9 @@ public class PulseBomb : HeroAbility
 
     public override void Activate(PlayerManager player)
     {
+        if (!player.UltimateCharge.TryConsume())
+            return;
+
         Transform camera = player.Camera.CameraHandle;
 
         Vector3 spawnPosition =

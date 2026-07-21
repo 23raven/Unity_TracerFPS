@@ -21,7 +21,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         CurrentHealth -= damageInfo.Damage;
 
-        damageInfo.Attacker?.UltimateCharge.Add(damageInfo.Damage);
+        damageInfo.Attacker?.UltimateCharge.Add(2f);
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
 
         if (CurrentHealth <= 0)

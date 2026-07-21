@@ -39,7 +39,11 @@ public class PulseBombProjectile : Projectile
 
         rb.isKinematic = true;
 
-        transform.SetParent(other.transform);
+        Transform target = other.GetComponentInParent<TrainingBot>().transform;
+
+        transform.SetParent(target, false);
+        transform.localPosition = new Vector3(0, 1.5f, 0);
+        transform.localRotation = Quaternion.identity;
 
         Invoke(nameof(Explode), data.FuseTime);
     }
