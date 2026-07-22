@@ -257,6 +257,7 @@ MonoBehaviour:
   health: {fileID: 4527299322955637641}
   hitbox: {fileID: 504963555333593095}
   visuals: {fileID: 3174449940597598577}
+  pulseBombAnchor: {fileID: 0}
   respawnDelay: 3
   waypoints:
   - {fileID: 0}

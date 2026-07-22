@@ -17,6 +17,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7062500413538525435, guid: 13bf58042c40dff40833bc7bf6a140c3, type: 3}
   speed: 25
   lifetime: 5
-  damage: 350
-  radius: 50
+  damage: 90
+  radius: 10
   fuseTime: 3

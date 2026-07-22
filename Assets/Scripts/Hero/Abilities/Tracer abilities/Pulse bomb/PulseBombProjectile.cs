@@ -38,12 +38,16 @@ public class PulseBombProjectile : Projectile
         rb.angularVelocity = Vector3.zero;
 
         rb.isKinematic = true;
+        rb.interpolation = RigidbodyInterpolation.None;
 
-        Transform target = other.GetComponentInParent<TrainingBot>().transform;
+        WalkingBot walkingBot = other.GetComponentInParent<WalkingBot>();
+        if (walkingBot != null)
+        {
+            transform.SetParent(walkingBot.transform, false);
 
-        transform.SetParent(target, false);
-        transform.localPosition = new Vector3(0, 1.5f, 0);
-        transform.localRotation = Quaternion.identity;
+            transform.localPosition = new Vector3(0f, 1.7f, 0f);
+            transform.localRotation = Quaternion.identity;
+        }
 
         Invoke(nameof(Explode), data.FuseTime);
     }
