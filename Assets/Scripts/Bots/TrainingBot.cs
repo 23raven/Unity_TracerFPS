@@ -4,7 +4,8 @@ public class TrainingBot : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private Health health;
-    [SerializeField] private Collider hitbox;
+    [SerializeField] private Collider bodyHitbox;
+    [SerializeField] private Collider headHitbox;
     [SerializeField] private GameObject visuals;
 
     [Header("Respawn")]
@@ -47,7 +48,10 @@ public class TrainingBot : MonoBehaviour
     {
         visuals.SetActive(alive);
 
-        if (hitbox != null)
-            hitbox.enabled = alive;
+        if (bodyHitbox != null)
+            bodyHitbox.enabled = alive;
+
+        if (headHitbox != null)
+            headHitbox.enabled = alive;
     }
 }

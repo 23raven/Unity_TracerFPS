@@ -34,13 +34,22 @@ public class HitscanWeapon : Weapon
 
     private void DealDamage(RaycastHit hit)
     {
-        IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+        IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
 
         if (damageable == null)
             return;
 
+        float damage = data.damage;
+
+        Hitbox hitbox = hit.collider.GetComponent<Hitbox>();
+
+        if (hitbox != null)
+        {
+            damage *= hitbox.DamageMultiplier;
+        }
+
         DamageInfo damageInfo = new DamageInfo(
-            data.damage,
+            damage,
             playerManager);
 
         damageable.TakeDamage(damageInfo);
