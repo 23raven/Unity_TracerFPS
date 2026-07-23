@@ -15909,7 +15909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   AudioManager: {fileID: 1220379551}
-  WeaponReloadAnimation: {fileID: 0}
+  WeaponAnimation: {fileID: 0}
   recallParticles: {fileID: 1758852126}
   blinkUI: {fileID: 800816754}
 --- !u!114 &1158085384
@@ -16001,7 +16001,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponReloadAnimation
   leftWeapon: {fileID: 1110860533}
   rightWeapon: {fileID: 1722389706}
-  duration: 1.5
+  recallAngle: -60
+  reloadRotation: 360
 --- !u!43 &1172942028
 Mesh:
   m_ObjectHideFlags: 0
@@ -24257,8 +24258,8 @@ Transform:
   m_Children:
   - {fileID: 356412878}
   - {fileID: 419925074}
-  - {fileID: 1722389706}
   - {fileID: 1110860533}
+  - {fileID: 1722389706}
   m_Father: {fileID: 2010908234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1918475842

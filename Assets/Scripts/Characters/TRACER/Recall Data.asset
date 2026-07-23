@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RecallData
   Cooldown: 7
   MaxCharges: 1
-  RecallDuration: 1.2
+  RecallDuration: 3
   RestoreHealth: 1

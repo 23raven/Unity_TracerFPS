@@ -9,6 +9,8 @@ public class Recall : HeroAbility
     {
         player.AudioManager.PlayRecall();
 
+        player.WeaponAnimation.PlayRecall();
+
         HistorySystem history = player.GetComponent<HistorySystem>();
 
         if (history == null)

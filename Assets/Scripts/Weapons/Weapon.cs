@@ -80,7 +80,7 @@ public virtual void Initialize(PlayerManager manager)
         isReloading = true;
 
         playerManager.AudioManager.PlayReload();
-        playerManager.WeaponReloadAnimation.Play();
+        playerManager.WeaponAnimation.PlayReload();
 
         Debug.Log("Reloading...");
 

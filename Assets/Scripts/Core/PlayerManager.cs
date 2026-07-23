@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
 
     public AudioManager AudioManager;
 
-    public WeaponReloadAnimation WeaponReloadAnimation;
+    public WeaponAnimation WeaponAnimation;
 
     [SerializeField] private ParticleSystem recallParticles;
 
@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         Health = GetComponent<Health>();
         HistorySystem = GetComponent<HistorySystem>();
         UltimateCharge = GetComponent<UltimateCharge>();
-        WeaponReloadAnimation = GetComponentInChildren<WeaponReloadAnimation>(true);
+        WeaponAnimation = GetComponentInChildren<WeaponAnimation>(true);
 
         Move.Initialize(this);
         Camera.Initialize(this);
