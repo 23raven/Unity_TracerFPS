@@ -17,12 +17,6 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float crouchingCameraHeight = 0.3f;
     [SerializeField] private float cameraLerpSpeed = 12f;
 
-    [Header("Blink Chromatic")]
-    [SerializeField] private float blinkChromaticIntensity = 1f;
-    [SerializeField] private float blinkChromaticFadeIn = 0.01f;
-    [SerializeField] private float blinkChromaticHold = 0.03f;
-    [SerializeField] private float blinkChromaticFadeOut = 0.05f;
-
     public Transform CameraHandle => cameraHandle;
 
     private PlayerManager playerManager;
@@ -37,7 +31,7 @@ public class PlayerCamera : MonoBehaviour
 
     private Coroutine fovCoroutine;
     private Coroutine chromaticCoroutine;
-
+    [Header("Post Processing")]
     [SerializeField] private PostProcessVolume postProcess;
     private ChromaticAberration chromatic;
 
@@ -48,9 +42,8 @@ public class PlayerCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        targetCameraHeight = standingCameraHeight;
-
         defaultFov = playerCamera.fieldOfView;
+        targetCameraHeight = standingCameraHeight;
 
         InitializePostProcessing();
     }
@@ -189,6 +182,8 @@ public class PlayerCamera : MonoBehaviour
         if (chromatic == null)
             return;
 
+        chromatic.intensity.value = 0f;
+
         if (chromaticCoroutine != null)
             StopCoroutine(chromaticCoroutine);
 
@@ -200,23 +195,6 @@ public class PlayerCamera : MonoBehaviour
                 fadeOut));
     }
 
-    private IEnumerator BlinkChromaticRoutine()
-    {
-        yield return AnimateChromatic(
-            0f,
-            blinkChromaticIntensity,
-            blinkChromaticFadeIn);
-
-        yield return new WaitForSeconds(blinkChromaticHold);
-
-        yield return AnimateChromatic(
-            blinkChromaticIntensity,
-            0f,
-            blinkChromaticFadeOut);
-
-        chromatic.intensity.value = 0f;
-        chromaticCoroutine = null;
-    }
 
     private IEnumerator AnimateChromatic(
         float from,

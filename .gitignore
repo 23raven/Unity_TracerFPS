@@ -99,3 +99,5 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 Assets/Imports/Plasma Guns Lite/Textures/Blue_Set_Clean/Plasma_SMG_Mat_Normal_OpenGL.png
 Assets/Imports/Plasma Guns Lite/Textures/Blue_Set_Dirty/Plasma_SMG_Mat_Normal_OpenGL.png
+Assets/Imports/ToonScapes/Spring Isles/Skybox/Textures/TSI_Skybox_Background_01A.tga
+Assets/Imports/ToonScapes/Spring Isles/Skybox/Textures/TSI_Skybox_Midground_01A.tga
