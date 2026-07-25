@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4527299322955637641, guid: a63f5986fb0c59e41bae0acdb034d0ac, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 6911456810982942675, guid: a63f5986fb0c59e41bae0acdb034d0ac, type: 3}
       propertyPath: m_Name
       value: WalkingBot 2
@@ -268,6 +272,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4416727506562322696, guid: a63f5986fb0c59e41bae0acdb034d0ac, type: 3}
   m_PrefabInstance: {fileID: 5331397}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &12982310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 12982311}
+  m_Layer: 0
+  m_Name: ProjectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &12982311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12982310}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 1, z: 1.5000002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1918475841}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &13279884
 GameObject:
   m_ObjectHideFlags: 0
@@ -12764,7 +12799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643653600}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16459,7 +16494,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &1158085378
 Transform:
   m_ObjectHideFlags: 0
@@ -16469,12 +16504,12 @@ Transform:
   m_GameObject: {fileID: 1158085376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 20, y: 1, z: -8}
+  m_LocalPosition: {x: 20, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2047002368}
   - {fileID: 643653601}
+  - {fileID: 2047002368}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1158085380
@@ -16540,6 +16575,7 @@ MonoBehaviour:
   ultimateUI: {fileID: 1277936806}
   ammoUI: {fileID: 1146088882}
   recallUI: {fileID: 90415977}
+  projectileSpawn: {fileID: 12982311}
 --- !u!114 &1158085384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16601,7 +16637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f170f7e06a07345955febbf481da00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 100
+  maxHealth: 250
 --- !u!114 &1158085389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17136,6 +17172,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3646417009049275846, guid: 6619443f6d7bb52449b0f8a21fd49624, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4398070005859460771, guid: 6619443f6d7bb52449b0f8a21fd49624, type: 3}
       propertyPath: pulseBombAnchor
       value: 
@@ -17383,6 +17423,10 @@ PrefabInstance:
     - target: {fileID: 4416727506562322696, guid: a63f5986fb0c59e41bae0acdb034d0ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527299322955637641, guid: a63f5986fb0c59e41bae0acdb034d0ac, type: 3}
+      propertyPath: maxHealth
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6911456810982942675, guid: a63f5986fb0c59e41bae0acdb034d0ac, type: 3}
       propertyPath: m_Name
@@ -20390,6 +20434,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3646417009049275846, guid: 6619443f6d7bb52449b0f8a21fd49624, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4398070005859460771, guid: 6619443f6d7bb52449b0f8a21fd49624, type: 3}
       propertyPath: pulseBombAnchor
       value: 
@@ -20438,6 +20486,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 12982311}
   - {fileID: 356412878}
   - {fileID: 419925074}
   - {fileID: 1110860533}
@@ -21426,7 +21475,7 @@ Transform:
   m_GameObject: {fileID: 2047002367}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22136,6 +22185,10 @@ PrefabInstance:
     - target: {fileID: 2304772823347645189, guid: 6619443f6d7bb52449b0f8a21fd49624, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646417009049275846, guid: 6619443f6d7bb52449b0f8a21fd49624, type: 3}
+      propertyPath: maxHealth
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4398070005859460771, guid: 6619443f6d7bb52449b0f8a21fd49624, type: 3}
       propertyPath: pulseBombAnchor

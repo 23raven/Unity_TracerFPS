@@ -34,6 +34,9 @@ public class PlayerManager : MonoBehaviour
     public UltimateUI UltimateUI => ultimateUI;
     [SerializeField] private AmmoUI ammoUI;
     [SerializeField] private RecallUI recallUI;
+    [SerializeField] private Transform projectileSpawn;
+
+    public Transform ProjectileSpawn => projectileSpawn;
 
     private void Awake()
     {

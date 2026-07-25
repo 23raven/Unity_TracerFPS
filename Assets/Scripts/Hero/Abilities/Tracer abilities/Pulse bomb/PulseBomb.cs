@@ -12,15 +12,12 @@ public class PulseBomb : HeroAbility
 
 
         Transform camera = player.Camera.CameraHandle;
-
-        Vector3 spawnPosition =
-            camera.position +
-            camera.forward * 0.5f;
+        Transform spawn = player.ProjectileSpawn;
 
         PulseBombProjectile projectile = Instantiate(
             data.ProjectilePrefab,
-            spawnPosition,
-            camera.rotation);
+            spawn.position,
+            Quaternion.LookRotation(camera.forward));
 
         projectile.Initialize(player, data);
         projectile.Launch(camera.forward);
