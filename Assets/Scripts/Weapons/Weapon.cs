@@ -18,11 +18,17 @@ public abstract class Weapon : MonoBehaviour
     
     public event Action Shot;
 
-public virtual void Initialize(PlayerManager manager)
+    public event Action<int, int> AmmoChanged;
+    public event Action ReloadStarted;
+    public event Action ReloadFinished;
+
+    public virtual void Initialize(PlayerManager manager)
     {
         playerManager = manager;
         currentAmmo = data.magazineSize;
         data = manager.Weapon;
+
+        NotifyAmmoChanged();
     }
 
     public abstract void Shoot();
@@ -57,7 +63,9 @@ public virtual void Initialize(PlayerManager manager)
     protected void ConsumeAmmo()
     {
         currentAmmo--;
-        Debug.Log($"{CurrentAmmo}/{MagazineSize}");
+
+        NotifyAmmoChanged();
+
         if (currentAmmo <= 0)
         {
             Reload();
@@ -79,17 +87,18 @@ public virtual void Initialize(PlayerManager manager)
     {
         isReloading = true;
 
+        ReloadStarted?.Invoke();
+
         playerManager.AudioManager.PlayReload();
         playerManager.WeaponAnimation.PlayReload();
-
-        Debug.Log("Reloading...");
 
         yield return new WaitForSeconds(data.reloadTime);
 
         currentAmmo = data.magazineSize;
         isReloading = false;
 
-        Debug.Log($"Reload complete: {CurrentAmmo}/{MagazineSize}");
+        NotifyAmmoChanged();
+        ReloadFinished?.Invoke();
     }
 
     public void SetWeaponData(WeaponData data)
@@ -102,4 +111,8 @@ public virtual void Initialize(PlayerManager manager)
         Shot?.Invoke();
     }
 
+    private void NotifyAmmoChanged()
+    {
+        AmmoChanged?.Invoke(CurrentAmmo, MagazineSize);
+    }
 }

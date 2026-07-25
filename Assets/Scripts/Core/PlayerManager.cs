@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour
     public ParticleSystem BlinkEffect => blinkEffect;
     [SerializeField] private UltimateUI ultimateUI;
     public UltimateUI UltimateUI => ultimateUI;
+    [SerializeField] private AmmoUI ammoUI;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class PlayerManager : MonoBehaviour
         Move.Initialize(this);
         Camera.Initialize(this);
         WeaponHolder.Initialize(this);
+        ammoUI.Initialize(WeaponHolder.CurrentWeapon);
         Shoot.Initialize(this);
         AbilitySystem.Initialize(this);
         blinkUI.Initialize(AbilitySystem.ShiftSlot);
