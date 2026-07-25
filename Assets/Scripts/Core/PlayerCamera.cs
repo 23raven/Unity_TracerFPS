@@ -180,7 +180,11 @@ public class PlayerCamera : MonoBehaviour
         fovCoroutine = null;
     }
 
-    public void PlayBlinkChromatic()
+    public void PlayChromatic(
+    float intensity,
+    float fadeIn,
+    float hold,
+    float fadeOut)
     {
         if (chromatic == null)
             return;
@@ -188,7 +192,12 @@ public class PlayerCamera : MonoBehaviour
         if (chromaticCoroutine != null)
             StopCoroutine(chromaticCoroutine);
 
-        chromaticCoroutine = StartCoroutine(BlinkChromaticRoutine());
+        chromaticCoroutine = StartCoroutine(
+            ChromaticRoutine(
+                intensity,
+                fadeIn,
+                hold,
+                fadeOut));
     }
 
     private IEnumerator BlinkChromaticRoutine()
@@ -240,6 +249,28 @@ public class PlayerCamera : MonoBehaviour
         }
 
         chromatic.intensity.value = to;
+    }
+
+    private IEnumerator ChromaticRoutine(
+    float intensity,
+    float fadeIn,
+    float hold,
+    float fadeOut)
+    {
+        yield return AnimateChromatic(
+            0f,
+            intensity,
+            fadeIn);
+
+        yield return new WaitForSeconds(hold);
+
+        yield return AnimateChromatic(
+            intensity,
+            0f,
+            fadeOut);
+
+        chromatic.intensity.value = 0f;
+        chromaticCoroutine = null;
     }
 }
 

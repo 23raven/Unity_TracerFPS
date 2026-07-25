@@ -9,7 +9,11 @@ public class Blink : HeroAbility
     public override void Activate(PlayerManager player)
     {
         player.StartCoroutine(BlinkRoutine(player));
-        player.Camera.PlayBlinkChromatic();
+        player.Camera.PlayChromatic(
+    1.0f,
+    0.01f,
+    0.03f,
+    0.05f);
     }
 
     private IEnumerator BlinkRoutine(PlayerManager player)
