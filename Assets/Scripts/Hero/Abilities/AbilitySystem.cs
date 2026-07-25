@@ -8,6 +8,7 @@ public class AbilitySystem : MonoBehaviour
     private AbilitySlot eSlot = new();
     private AbilitySlot ultimateSlot = new();
     public AbilitySlot ShiftSlot => shiftSlot;
+    public AbilitySlot ESlot => eSlot;
     public void Initialize(PlayerManager manager)
     {
         playerManager = manager;

@@ -33,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private UltimateUI ultimateUI;
     public UltimateUI UltimateUI => ultimateUI;
     [SerializeField] private AmmoUI ammoUI;
+    [SerializeField] private RecallUI recallUI;
 
     private void Awake()
     {
@@ -59,5 +60,6 @@ public class PlayerManager : MonoBehaviour
         AbilitySystem.Initialize(this);
         blinkUI.Initialize(AbilitySystem.ShiftSlot);
         ultimateUI.Initialize(UltimateCharge);
+        recallUI.Initialize(AbilitySystem.ESlot);
     }
 }

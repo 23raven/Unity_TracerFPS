@@ -15,9 +15,9 @@ MonoBehaviour:
   Cooldown: 5
   MaxCharges: 1
   projectilePrefab: {fileID: 7062500413538525435, guid: 13bf58042c40dff40833bc7bf6a140c3, type: 3}
-  speed: 25
+  speed: 15
   lifetime: 5
   damage: 90
-  radius: 10
+  radius: 5
   fuseTime: 3
   explosionEffect: {fileID: 4891440538664600065, guid: 82066d902ed0dd6488ddfd32eb994801, type: 3}
