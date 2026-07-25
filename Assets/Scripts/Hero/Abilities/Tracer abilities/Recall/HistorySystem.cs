@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HistorySystem : MonoBehaviour
 {
-    private const float RecordInterval = 0.016f;
+    private const float RecordInterval = 0.05f;
     private const float MaxRecordTime = 3f;
-    private const float RecallDuration = 1.2f;
+    private const float RecallDuration = 0.9f;
 
     private readonly List<HistorySnapshot> history = new();
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class RecallData : AbilityData
 {
     [Header("Recall")]
-    public float RecallDuration = 1.25f;
+    public float RecallDuration = 0.9f;
 
     public bool RestoreHealth = true;
 }

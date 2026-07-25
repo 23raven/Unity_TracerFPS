@@ -10,6 +10,7 @@ public class Recall : HeroAbility
         player.AudioManager.PlayRecall();
 
         player.WeaponAnimation.PlayRecall();
+        player.Camera.PlayRecallFov();
 
         HistorySystem history = player.GetComponent<HistorySystem>();
 

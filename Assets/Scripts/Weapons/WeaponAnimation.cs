@@ -7,20 +7,33 @@ public class WeaponAnimation : MonoBehaviour
     [SerializeField] private Transform leftWeapon;
     [SerializeField] private Transform rightWeapon;
 
-    [Header("Settings")]
-    [SerializeField] private float recallAngle = -60f;
+    [Header("Reload")]
     [SerializeField] private float reloadRotation = 360f;
+
+    [Header("Recall Left")]
+    [SerializeField] private Vector3 leftRecallPosition = new(-0.5f, 0.7f, 2f);
+    [SerializeField] private Vector3 leftRecallRotation = new(-60f, 30f, 0f);
+
+    [Header("Recall Right")]
+    [SerializeField] private Vector3 rightRecallPosition = new(0.5f, 0.7f, 2f);
+    [SerializeField] private Vector3 rightRecallRotation = new(-60f, -30f, 0f);
+
+    private Vector3 leftDefaultPosition;
+    private Vector3 rightDefaultPosition;
 
     private Quaternion leftDefaultRotation;
     private Quaternion rightDefaultRotation;
 
+    private Coroutine animationCoroutine;
+
     private void Awake()
     {
+        leftDefaultPosition = leftWeapon.localPosition;
+        rightDefaultPosition = rightWeapon.localPosition;
+
         leftDefaultRotation = leftWeapon.localRotation;
         rightDefaultRotation = rightWeapon.localRotation;
     }
-
-    private Coroutine animationCoroutine;
 
     public void PlayReload()
     {
@@ -29,7 +42,7 @@ public class WeaponAnimation : MonoBehaviour
 
     public void PlayRecall()
     {
-        PlayAnimation(RecallRoutine(3f));
+        PlayAnimation(RecallRoutine(1.2f));
     }
 
     private void PlayAnimation(IEnumerator routine)
@@ -42,7 +55,6 @@ public class WeaponAnimation : MonoBehaviour
 
     private IEnumerator ReloadRoutine(float duration)
     {
-
         float time = 0f;
 
         while (time < duration)
@@ -52,63 +64,92 @@ public class WeaponAnimation : MonoBehaviour
             float t = Mathf.SmoothStep(0f, 1f, time / duration);
             float angle = Mathf.Lerp(0f, reloadRotation, t);
 
-            leftWeapon.localRotation =
-                leftDefaultRotation * Quaternion.Euler(angle, 0f, 0f);
+            Quaternion rotation = Quaternion.Euler(angle, 0f, 0f);
 
-            rightWeapon.localRotation =
-                rightDefaultRotation * Quaternion.Euler(angle, 0f, 0f);
+            leftWeapon.localRotation = leftDefaultRotation * rotation;
+            rightWeapon.localRotation = rightDefaultRotation * rotation;
 
             yield return null;
         }
 
-        leftWeapon.localRotation = leftDefaultRotation;
-        rightWeapon.localRotation = rightDefaultRotation;
-
-        animationCoroutine = null;
+        ResetWeapons();
     }
 
     private IEnumerator RecallRoutine(float duration)
     {
-
         float halfDuration = duration * 0.5f;
 
         float time = 0f;
 
-        // Опустить оружие
+        // Войти в позу
         while (time < halfDuration)
         {
             time += Time.deltaTime;
 
             float t = Mathf.SmoothStep(0f, 1f, time / halfDuration);
-            float angle = Mathf.Lerp(0f, recallAngle, t);
 
-            leftWeapon.localRotation =
-                leftDefaultRotation * Quaternion.Euler(angle, 0f, 0f);
+            leftWeapon.localPosition = Vector3.Lerp(
+                leftDefaultPosition,
+                leftRecallPosition,
+                t);
 
-            rightWeapon.localRotation =
-                rightDefaultRotation * Quaternion.Euler(angle, 0f, 0f);
+            rightWeapon.localPosition = Vector3.Lerp(
+                rightDefaultPosition,
+                rightRecallPosition,
+                t);
+
+            leftWeapon.localRotation = Quaternion.Lerp(
+                leftDefaultRotation,
+                Quaternion.Euler(leftRecallRotation),
+                t);
+
+            rightWeapon.localRotation = Quaternion.Lerp(
+                rightDefaultRotation,
+                Quaternion.Euler(rightRecallRotation),
+                t);
 
             yield return null;
         }
 
         time = 0f;
 
-        // Вернуть обратно
+        // Вернуться обратно
         while (time < halfDuration)
         {
             time += Time.deltaTime;
 
             float t = Mathf.SmoothStep(0f, 1f, time / halfDuration);
-            float angle = Mathf.Lerp(recallAngle, 0f, t);
 
-            leftWeapon.localRotation =
-                leftDefaultRotation * Quaternion.Euler(angle, 0f, 0f);
+            leftWeapon.localPosition = Vector3.Lerp(
+                leftRecallPosition,
+                leftDefaultPosition,
+                t);
 
-            rightWeapon.localRotation =
-                rightDefaultRotation * Quaternion.Euler(angle, 0f, 0f);
+            rightWeapon.localPosition = Vector3.Lerp(
+                rightRecallPosition,
+                rightDefaultPosition,
+                t);
+
+            leftWeapon.localRotation = Quaternion.Lerp(
+                Quaternion.Euler(leftRecallRotation),
+                leftDefaultRotation,
+                t);
+
+            rightWeapon.localRotation = Quaternion.Lerp(
+                Quaternion.Euler(rightRecallRotation),
+                rightDefaultRotation,
+                t);
 
             yield return null;
         }
+
+        ResetWeapons();
+    }
+
+    private void ResetWeapons()
+    {
+        leftWeapon.localPosition = leftDefaultPosition;
+        rightWeapon.localPosition = rightDefaultPosition;
 
         leftWeapon.localRotation = leftDefaultRotation;
         rightWeapon.localRotation = rightDefaultRotation;
