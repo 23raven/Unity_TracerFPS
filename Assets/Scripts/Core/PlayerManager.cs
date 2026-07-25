@@ -30,6 +30,8 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private ParticleSystem blinkEffect;
     public ParticleSystem BlinkEffect => blinkEffect;
+    [SerializeField] private UltimateUI ultimateUI;
+    public UltimateUI UltimateUI => ultimateUI;
 
     private void Awake()
     {
@@ -54,5 +56,6 @@ public class PlayerManager : MonoBehaviour
         Shoot.Initialize(this);
         AbilitySystem.Initialize(this);
         blinkUI.Initialize(AbilitySystem.ShiftSlot);
+        ultimateUI.Initialize(UltimateCharge);
     }
 }
