@@ -7,6 +7,7 @@ public class HistorySystem : MonoBehaviour
     private const float RecordInterval = 0.05f;
     private const float MaxRecordTime = 3f;
     private const float RecallDuration = 0.9f;
+    [SerializeField] private float recallRecoveryTime = 0.15f;
 
     private readonly List<HistorySnapshot> history = new();
 
@@ -66,7 +67,7 @@ public class HistorySystem : MonoBehaviour
         PlayerInput input = player.GetComponent<PlayerInput>();
 
         if (input != null)
-            input.enabled = false;
+            input.IgnoreMovement = true;
 
         if (player.RecallParticles != null)
             player.RecallParticles.Play();
@@ -110,8 +111,10 @@ public class HistorySystem : MonoBehaviour
 
         history.Clear();
 
+        yield return new WaitForSeconds(recallRecoveryTime);
+
         if (input != null)
-            input.enabled = true;
+            input.IgnoreMovement = false;
 
         isRecalling = false;
     }

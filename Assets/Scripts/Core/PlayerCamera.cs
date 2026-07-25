@@ -16,12 +16,6 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float crouchingCameraHeight = 0.3f;
     [SerializeField] private float cameraLerpSpeed = 12f;
 
-    [Header("Recall FOV")]
-    [SerializeField] private float recallFov = 70f;
-    [SerializeField] private float recallFovEnterDuration = 0.15f;
-    [SerializeField] private float recallFovHoldDuration = 0.60f;
-    [SerializeField] private float recallFovExitDuration = 0.15f;
-
     public Transform CameraHandle => cameraHandle;
 
     private PlayerManager playerManager;
@@ -95,44 +89,57 @@ public class PlayerCamera : MonoBehaviour
         cameraHandle.localPosition = localPos;
     }
 
-    public void PlayRecallFov()
+    public void PlayFov(
+     float targetFov,
+     float enterDuration,
+     float holdDuration,
+     float exitDuration)
     {
         if (fovCoroutine != null)
             StopCoroutine(fovCoroutine);
 
-        fovCoroutine = StartCoroutine(RecallFovRoutine());
+        fovCoroutine = StartCoroutine(
+            FovRoutine(
+                targetFov,
+                enterDuration,
+                holdDuration,
+                exitDuration));
     }
 
-    private IEnumerator RecallFovRoutine()
+    private IEnumerator FovRoutine(
+        float targetFov,
+        float enterDuration,
+        float holdDuration,
+        float exitDuration)
     {
         float time = 0f;
 
-        while (time < recallFovEnterDuration)
+        while (time < enterDuration)
         {
             time += Time.deltaTime;
 
-            float t = Mathf.SmoothStep(0f, 1f, time / recallFovEnterDuration);
+            float t = Mathf.SmoothStep(0f, 1f, time / enterDuration);
 
             playerCamera.fieldOfView =
-                Mathf.Lerp(defaultFov, recallFov, t);
+                Mathf.Lerp(defaultFov, targetFov, t);
 
             yield return null;
         }
 
-        playerCamera.fieldOfView = recallFov;
+        playerCamera.fieldOfView = targetFov;
 
-        yield return new WaitForSeconds(recallFovHoldDuration);
+        yield return new WaitForSeconds(holdDuration);
 
         time = 0f;
 
-        while (time < recallFovExitDuration)
+        while (time < exitDuration)
         {
             time += Time.deltaTime;
 
-            float t = Mathf.SmoothStep(0f, 1f, time / recallFovExitDuration);
+            float t = Mathf.SmoothStep(0f, 1f, time / exitDuration);
 
             playerCamera.fieldOfView =
-                Mathf.Lerp(recallFov, defaultFov, t);
+                Mathf.Lerp(targetFov, defaultFov, t);
 
             yield return null;
         }

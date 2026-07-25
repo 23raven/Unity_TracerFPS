@@ -28,6 +28,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool UltimatePressed => inputActions.Player.Ultimate.WasPressedThisFrame();
     public bool RightClickPressed => inputActions.Player.SecondaryAbility.WasPressedThisFrame();
+    public bool IgnoreMovement { get; set; }
 
     private void Awake()
     {
@@ -47,8 +48,11 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        Move = inputActions.Player.Move.ReadValue<Vector2>();
-        Look = inputActions.Player.Look.ReadValue<Vector2>();
+        if (IgnoreMovement)
+            Move = Vector2.zero;
+        else
+            Move = inputActions.Player.Move.ReadValue<Vector2>();
+            Look = inputActions.Player.Look.ReadValue<Vector2>();
     }
 
 

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlinkData
   Cooldown: 5
   MaxCharges: 3
-  blinkEffect: {fileID: 7123853702983496459, guid: ee71d8dfb36a7b048aef24b0bc8f9764, type: 3}
-  Distance: 6
+  distance: 7
+  cooldown: 3
+  effectDelay: 0.02
