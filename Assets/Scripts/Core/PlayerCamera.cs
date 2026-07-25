@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float crouchingCameraHeight = 0.3f;
     [SerializeField] private float cameraLerpSpeed = 12f;
 
+    [Header("Blink Chromatic")]
+    [SerializeField] private float blinkChromaticIntensity = 1f;
+    [SerializeField] private float blinkChromaticFadeIn = 0.01f;
+    [SerializeField] private float blinkChromaticHold = 0.03f;
+    [SerializeField] private float blinkChromaticFadeOut = 0.05f;
+
     public Transform CameraHandle => cameraHandle;
 
     private PlayerManager playerManager;
@@ -27,7 +34,12 @@ public class PlayerCamera : MonoBehaviour
     private float previousPitch;
 
     private float defaultFov;
+
     private Coroutine fovCoroutine;
+    private Coroutine chromaticCoroutine;
+
+    [SerializeField] private PostProcessVolume postProcess;
+    private ChromaticAberration chromatic;
 
     public void Initialize(PlayerManager manager)
     {
@@ -39,6 +51,25 @@ public class PlayerCamera : MonoBehaviour
         targetCameraHeight = standingCameraHeight;
 
         defaultFov = playerCamera.fieldOfView;
+
+        InitializePostProcessing();
+    }
+
+    private void InitializePostProcessing()
+    {
+        if (postProcess == null)
+        {
+            Debug.LogError("PostProcessVolume is not assigned.");
+            return;
+        }
+
+        if (!postProcess.profile.TryGetSettings(out chromatic))
+        {
+            Debug.LogError("Chromatic Aberration is missing from the Post Process Profile.");
+            return;
+        }
+
+        chromatic.intensity.value = 0f;
     }
 
     private void Update()
@@ -90,10 +121,10 @@ public class PlayerCamera : MonoBehaviour
     }
 
     public void PlayFov(
-     float targetFov,
-     float enterDuration,
-     float holdDuration,
-     float exitDuration)
+        float targetFov,
+        float enterDuration,
+        float holdDuration,
+        float exitDuration)
     {
         if (fovCoroutine != null)
             StopCoroutine(fovCoroutine);
@@ -148,4 +179,67 @@ public class PlayerCamera : MonoBehaviour
 
         fovCoroutine = null;
     }
+
+    public void PlayBlinkChromatic()
+    {
+        if (chromatic == null)
+            return;
+
+        if (chromaticCoroutine != null)
+            StopCoroutine(chromaticCoroutine);
+
+        chromaticCoroutine = StartCoroutine(BlinkChromaticRoutine());
+    }
+
+    private IEnumerator BlinkChromaticRoutine()
+    {
+        yield return AnimateChromatic(
+            0f,
+            blinkChromaticIntensity,
+            blinkChromaticFadeIn);
+
+        yield return new WaitForSeconds(blinkChromaticHold);
+
+        yield return AnimateChromatic(
+            blinkChromaticIntensity,
+            0f,
+            blinkChromaticFadeOut);
+
+        chromatic.intensity.value = 0f;
+        chromaticCoroutine = null;
+    }
+
+    private IEnumerator AnimateChromatic(
+        float from,
+        float to,
+        float duration)
+    {
+        if (duration <= 0f)
+        {
+            chromatic.intensity.value = to;
+            yield break;
+        }
+
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+
+            float t = Mathf.SmoothStep(
+                0f,
+                1f,
+                time / duration);
+
+            chromatic.intensity.value = Mathf.Lerp(
+                from,
+                to,
+                t);
+
+            yield return null;
+        }
+
+        chromatic.intensity.value = to;
+    }
 }
+
