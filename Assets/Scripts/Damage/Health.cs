@@ -10,6 +10,7 @@ public class Health : MonoBehaviour, IDamageable
 
     public float CurrentHealth { get; private set; }
     public event Action OnDeath;
+    private bool isDead;
 
     private void Awake()
     {
@@ -19,7 +20,8 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(DamageInfo damageInfo)
     {
-        CurrentHealth -= damageInfo.Damage;
+
+        CurrentHealth = Mathf.Max(CurrentHealth - damageInfo.Damage, 0f);
 
         damageInfo.Attacker?.UltimateCharge.Add(4f);
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
@@ -39,6 +41,10 @@ public class Health : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        if (isDead)
+            return;
+
+        isDead = true;
         OnDeath?.Invoke();
     }
 

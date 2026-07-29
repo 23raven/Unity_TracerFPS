@@ -13548,7 +13548,7 @@ GameObject:
   - component: {fileID: 813324134}
   - component: {fileID: 813324133}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: Directional Light 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14246,9 +14246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434c477fe96acdb40bec78a1d300e46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallProcedural
-  columnsX: 3
+  columnsX: 8
   columnsZ: 50
-  fillFactor: 0.82
+  fillFactor: 1
   minHeightFraction: 0.4
   maxHeightFraction: 1
   baseMaterial: {fileID: 0}
@@ -14935,9 +14935,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434c477fe96acdb40bec78a1d300e46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallProcedural
-  columnsX: 3
+  columnsX: 10
   columnsZ: 50
-  fillFactor: 0.82
+  fillFactor: 1
   minHeightFraction: 0.4
   maxHeightFraction: 1
   baseMaterial: {fileID: 0}
@@ -16130,8 +16130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::wallProcedural
   columnsX: 50
-  columnsZ: 5
-  fillFactor: 0.82
+  columnsZ: 7
+  fillFactor: 1
   minHeightFraction: 0.4
   maxHeightFraction: 1
   baseMaterial: {fileID: 0}
@@ -16581,9 +16581,9 @@ GameObject:
   - component: {fileID: 1158085384}
   - component: {fileID: 1158085386}
   - component: {fileID: 1158085387}
-  - component: {fileID: 1158085388}
   - component: {fileID: 1158085389}
   - component: {fileID: 1158085390}
+  - component: {fileID: 1158085388}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -16677,10 +16677,6 @@ MonoBehaviour:
   standingCameraHeight: 2
   crouchingCameraHeight: 1
   cameraLerpSpeed: 12
-  blinkChromaticIntensity: 0.8
-  blinkChromaticFadeIn: 0.01
-  blinkChromaticHold: 0.03
-  blinkChromaticFadeOut: 0.05
   postProcess: {fileID: 956465612}
 --- !u!114 &1158085383
 MonoBehaviour:
@@ -17970,8 +17966,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallProcedural
   columnsX: 50
-  columnsZ: 3
-  fillFactor: 0.82
+  columnsZ: 12
+  fillFactor: 1
   minHeightFraction: 0.4
   maxHeightFraction: 1
   baseMaterial: {fileID: 0}
