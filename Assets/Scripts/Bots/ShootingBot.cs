@@ -4,13 +4,17 @@ using UnityEngine;
 public class ShootingBot : TrainingBot
 {
     [Header("Combat")]
-    [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private BulletProjectile projectilePrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private BotAnimation botAnimation;
 
     [Header("Settings")]
     [SerializeField] private float fireDelay = 3f;
-    [SerializeField] private float projectileSpeed = 5f;
+
+    [Header("Projectile")]
+    [SerializeField] private float projectileSpeed;
+    [SerializeField] private float projectileDamage;
+    [SerializeField] private float projectileLifeTime;
 
     private Coroutine shootRoutine;
 
@@ -51,14 +55,20 @@ public class ShootingBot : TrainingBot
     /// <summary>
     /// Âûחûגאועסÿ Animation Event.
     /// </summary>
+   
     public void SpawnBullet()
     {
-        Projectile projectile = Instantiate(
-    projectilePrefab,
-    firePoint.position,
-    firePoint.rotation * projectilePrefab.transform.localRotation);
+        BulletProjectile projectile = Instantiate(
+            projectilePrefab,
+            firePoint.position,
+            firePoint.rotation * projectilePrefab.transform.localRotation);
 
-        projectile.Initialize(null);
-        projectile.Launch(firePoint.forward * projectileSpeed);
+        projectile.Configure(
+            projectileSpeed,
+             projectileDamage,
+             projectileLifeTime);
+
+        projectile.Launch(firePoint.forward);
     }
+
 }

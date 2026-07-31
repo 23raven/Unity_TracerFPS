@@ -1,11 +1,23 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ProjectileMovement))]
 public class BulletProjectile : Projectile
 {
-    [SerializeField] private float speed = 30f;
-    [SerializeField] private float damage = 10f;
-    [SerializeField] private float lifeTime = 5f;
+    [Header("Settings")]
+    [SerializeField] private float speed;
+    [SerializeField] private float damage;
+    [SerializeField] private float lifeTime;
+
+    private bool hasHit;
+
+    public void Configure(
+    float speed,
+    float damage,
+    float lifeTime)
+    {
+        this.speed = speed;
+        this.damage = damage;
+        this.lifeTime = lifeTime;
+    }
 
     public override void Launch(Vector3 direction)
     {
@@ -16,21 +28,22 @@ public class BulletProjectile : Projectile
 
     private void OnTriggerEnter(Collider other)
     {
+        if (hasHit)
+            return;
+
+        if (other.isTrigger)
+            return;
+
         OnHit(other);
     }
 
     protected override void OnHit(Collider other)
     {
-        Debug.Log("Hit: " + other.name);
+        hasHit = true;
 
         if (other.TryGetComponent(out IDamageable damageable))
         {
-            Debug.Log("Damage!");
-
-            damageable.TakeDamage(
-                new DamageInfo(
-                    damage,
-                    owner));
+            damageable.TakeDamage(new DamageInfo(damage, owner));
         }
 
         Destroy(gameObject);
