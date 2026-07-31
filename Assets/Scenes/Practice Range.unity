@@ -22810,7 +22810,23 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: a2e52b4a599f87d439e284c6d55c181b, type: 2}
     - target: {fileID: 5552813080942583156, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.867
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552813080942583156, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552813080942583156, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552813080942583156, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552813080942583156, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6962495997902521344, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
       propertyPath: botAnimation
@@ -22822,6 +22838,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6962495997902521344, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
       propertyPath: minFireDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962495997902521344, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}
+      propertyPath: projectileSpeed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6962495997902521344, guid: 6bb71d6fa83b4574cb22b53593d7fb09, type: 3}

@@ -10,7 +10,7 @@ public class ShootingBot : TrainingBot
 
     [Header("Settings")]
     [SerializeField] private float fireDelay = 3f;
-    [SerializeField] private float projectileSpeed = 35f;
+    [SerializeField] private float projectileSpeed = 5f;
 
     private Coroutine shootRoutine;
 
@@ -54,9 +54,9 @@ public class ShootingBot : TrainingBot
     public void SpawnBullet()
     {
         Projectile projectile = Instantiate(
-            projectilePrefab,
-            firePoint.position,
-            firePoint.rotation);
+    projectilePrefab,
+    firePoint.position,
+    firePoint.rotation * projectilePrefab.transform.localRotation);
 
         projectile.Initialize(null);
         projectile.Launch(firePoint.forward * projectileSpeed);
