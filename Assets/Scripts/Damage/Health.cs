@@ -10,7 +10,6 @@ public class Health : MonoBehaviour, IDamageable
 
     public float CurrentHealth { get; private set; }
     public event Action OnDeath;
-    private bool isDead;
 
     private void Awake()
     {
@@ -41,10 +40,6 @@ public class Health : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        if (isDead)
-            return;
-
-        isDead = true;
         OnDeath?.Invoke();
     }
 

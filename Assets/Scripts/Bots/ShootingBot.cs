@@ -1,51 +1,64 @@
+using System.Collections;
 using UnityEngine;
 
 public class ShootingBot : TrainingBot
 {
     [Header("Combat")]
-    [SerializeField] private Transform target;
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private BotAnimation botAnimation;
 
     [Header("Settings")]
-    [SerializeField] private float attackRange = 20f;
-    [SerializeField] private float rotationSpeed = 8f;
+    [SerializeField] private float fireDelay = 3f;
+    [SerializeField] private float projectileSpeed = 35f;
 
-    private void Update()
+    private Coroutine shootRoutine;
+
+    protected override void Awake()
     {
-        if (target == null)
-            return;
+        base.Awake();
 
-        if (!IsTargetInRange())
-            return;
-
-        RotateTowardsTarget();
-
-        weapon.Shoot();
+        shootRoutine = StartCoroutine(ShootRoutine());
     }
 
-    private bool IsTargetInRange()
+    protected override void OnDestroy()
     {
-        float distance = Vector3.Distance(
-            transform.position,
-            target.position);
+        base.OnDestroy();
 
-        return distance <= attackRange;
+        if (shootRoutine != null)
+            StopCoroutine(shootRoutine);
     }
 
-    private void RotateTowardsTarget()
+    private IEnumerator ShootRoutine()
     {
-        Vector3 direction = target.position - transform.position;
-        direction.y = 0f;
+        while (true)
+        {
+            yield return new WaitForSeconds(fireDelay);
 
-        if (direction.sqrMagnitude < 0.001f)
-            return;
+            Shoot();
+        }
+    }
 
-        Quaternion targetRotation =
-            Quaternion.LookRotation(direction);
+    /// <summary>
+    /// Запускает анимацию стрельбы.
+    /// Пуля создается Animation Event'ом.
+    /// </summary>
+    private void Shoot()
+    {
+        botAnimation.PlayShoot();
+    }
 
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            rotationSpeed * Time.deltaTime);
+    /// <summary>
+    /// Вызывается Animation Event.
+    /// </summary>
+    public void SpawnBullet()
+    {
+        Projectile projectile = Instantiate(
+            projectilePrefab,
+            firePoint.position,
+            firePoint.rotation);
+
+        projectile.Initialize(null);
+        projectile.Launch(firePoint.forward * projectileSpeed);
     }
 }
