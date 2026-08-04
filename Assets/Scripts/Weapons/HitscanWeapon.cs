@@ -30,7 +30,11 @@ public class HitscanWeapon : Weapon
 
         PlayMuzzleFlash();
         PlayImpactEffect(hit, hitbox);
+
+        //«десь нужно проверить не стрел€ю ли € в себ€, если да, то не наносить урон
         DealDamage(hit, hitbox);
+
+
         viewModelMotion.PlayRecoil();
         InvokeShot();
     }
@@ -40,6 +44,11 @@ public class HitscanWeapon : Weapon
         IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
 
         if (damageable == null)
+            return;
+
+        PlayerManager hitPlayer = hit.collider.GetComponentInParent<PlayerManager>();
+
+        if (hitPlayer == playerManager)
             return;
 
         float damage = data.damage;
@@ -53,12 +62,14 @@ public class HitscanWeapon : Weapon
 
         damageable.TakeDamage(damageInfo);
 
-        
-
         if (hitbox != null && hitbox.Critical)
         {
             playerManager.AudioManager.PlayCritical();
-        }   else    playerManager.AudioManager.PlayHit();
+        }
+        else
+        {
+            playerManager.AudioManager.PlayHit();
+        }
     }
 
     private void PlayMuzzleFlash()
