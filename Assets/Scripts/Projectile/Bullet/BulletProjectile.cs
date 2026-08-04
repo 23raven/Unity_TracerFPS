@@ -28,12 +28,11 @@ public class BulletProjectile : Projectile
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hit: " + other.name);
+
         if (hasHit)
             return;
-
-        if (other.isTrigger)
-            return;
-
+             
         OnHit(other);
     }
 
@@ -41,9 +40,17 @@ public class BulletProjectile : Projectile
     {
         hasHit = true;
 
-        if (other.TryGetComponent(out IDamageable damageable))
+        Debug.Log("Trying damage: " + other.name);
+
+        if (other.TryGetComponent(out Health health))
         {
-            damageable.TakeDamage(new DamageInfo(damage, owner));
+            Debug.Log("Damage applied");
+
+            health.TakeDamage(new DamageInfo(damage, owner));
+        }
+        else
+        {
+            Debug.Log("Health NOT FOUND");
         }
 
         Destroy(gameObject);
