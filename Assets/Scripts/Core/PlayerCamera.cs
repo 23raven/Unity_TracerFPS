@@ -39,8 +39,7 @@ public class PlayerCamera : MonoBehaviour
     {
         playerManager = manager;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        SetCursorLocked(true);
 
         defaultFov = playerCamera.fieldOfView;
         targetCameraHeight = standingCameraHeight;
@@ -249,6 +248,15 @@ public class PlayerCamera : MonoBehaviour
 
         chromatic.intensity.value = 0f;
         chromaticCoroutine = null;
+    }
+
+    public void SetCursorLocked(bool locked)
+    {
+        Cursor.lockState = locked
+            ? CursorLockMode.Locked
+            : CursorLockMode.None;
+
+        Cursor.visible = !locked;
     }
 }
 

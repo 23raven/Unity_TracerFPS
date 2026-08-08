@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -37,6 +38,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform projectileSpawn;
 
     public Transform ProjectileSpawn => projectileSpawn;
+
+    public GameObject DeathUI;
+    public GameObject GameplayHUD;
 
     private void Awake()
     {

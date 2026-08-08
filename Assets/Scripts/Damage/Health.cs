@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class Health : MonoBehaviour, IDamageable
 {
@@ -10,6 +11,8 @@ public class Health : MonoBehaviour, IDamageable
 
     public float CurrentHealth { get; private set; }
     public event Action OnDeath;
+
+    public PlayerManager player;
 
     private void Awake()
     {
@@ -41,6 +44,10 @@ public class Health : MonoBehaviour, IDamageable
     private void Die()
     {
         OnDeath?.Invoke();
+        player.DeathUI.SetActive(true);
+        player.AudioManager.gameObject.SetActive(false);
+        player.Camera.SetCursorLocked(false);
+        Time.timeScale = 0f;      
     }
 
     public void SetHealth(float health)
